@@ -15,7 +15,8 @@ import java.util.UUID;
 public interface TaskRepository extends JpaRepository<TaskEntity, UUID>, JpaSpecificationExecutor<TaskEntity>{
     @Query("SELECT p, (SELECT COUNT(t) FROM TaskEntity t WHERE t.parentTask.id = p.id), " +
             "(SELECT COUNT(l) FROM TaskEntity l WHERE l.parentTask.id = p.id AND l.status ='DONE') , " +
-            "(SELECT COUNT(m) FROM TaskEntity m WHERE m.parentTask.id = p.id AND m.status ='COMPLETED')  " +
+            "(SELECT COUNT(m) FROM TaskEntity m WHERE m.parentTask.id = p.id AND m.status ='COMPLETED') , " +
+            "(SELECT COUNT(n) FROM TaskEntity n)  " +
             "FROM TaskEntity p WHERE UPPER(p.name) LIKE %:name% and UPPER(p.status) LIKE %:status%")
     Page<Object[]> search(@Param("name") String name, @Param("status") String status, Pageable pageable);
 }

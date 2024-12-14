@@ -21,4 +21,6 @@ public class TaskDto {
     private Long totalDependencyComplete;
 
     private Long totalDependencyDone;
+
+    private Long totalData;
 }

@@ -55,12 +55,14 @@ public class TaskService {
                 Long dependentTaskCount = (Long) result[1];      // Get dependent task count
                 Long dependentDoneTaskCount = (Long) result[2];
                 Long dependentCompleteTaskCount = (Long) result[3];
+                Long totalData = (Long) result[4];
 
                 // Map to TaskWithDependenciesDTO
                 TaskDto dto = objectMapper.convertValue(taskEntity, TaskDto.class);
                 dto.setTotalDependency(dependentTaskCount);
                 dto.setTotalDependencyDone(dependentDoneTaskCount);
                 dto.setTotalDependencyComplete(dependentCompleteTaskCount);
+                dto.setTotalData(totalData);
 
                 return dto;
             }).toList();
