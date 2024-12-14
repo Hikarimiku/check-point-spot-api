@@ -1,0 +1,12 @@
+CREATE TABLE public.task
+(
+    id uuid NOT NULL,
+    name character varying,
+    status character varying,
+    parent_task_id uuid,
+    PRIMARY KEY (id),
+    FOREIGN KEY (parent_task_id) REFERENCES public.task (id)
+);
+
+ALTER TABLE IF EXISTS public.task
+    OWNER to postgres;
